@@ -19,67 +19,55 @@ _Built for transparency. Designed for performance. Open to collaboration._
 
 ---
 
-## 🔎 Why STAX?
+## ✨ Features
 
-Most financial tools:
-- Hide logic behind black boxes  
-- Overwhelm users with raw data  
-- Lock features behind paywalls  
-
-**STAX is different.**
-
-It is:
-- 🧠 **Explainable** — every metric and score is derived openly  
-- ⚡ **Efficient** — optimized for speed and low API usage  
-- 🧩 **Modular** — easy to extend, replace, or integrate  
-- 🌍 **Open-source** — audit, learn, contribute  
-
----
-
-## ✨ Core Capabilities
-
-### 📊 Market Dashboard
-A clean, real-time overview of market conditions.
-- Live asset tracking & historical trends  
+### 📊 Market Intelligence Dashboard
+- Real-time stock price tracking  
+- Historical price trends (1D, 1M, 1Y)  
 - Volatility and percentage change indicators  
-- Global market session awareness  
-
----
-
-### 💱 Crypto & Forex Conversion
-Accurate multi-asset currency intelligence.
-- Fiat ↔ Crypto conversions  
-- Live exchange rates  
-- Low-latency calculation logic  
-
----
-
-### 🤖 Automated Trading Engine
-Algorithmic strategies designed for extensibility.
-- **Alpha Scalp** — micro-profit, high-frequency logic  
-- **Momentum Swing** — trend-based execution  
-- **Conservative Yield** — risk-aware capital preservation  
-- Transparent logs & runtime telemetry  
+- Global market session status (Open / Closed)  
 
 ---
 
 ### 🏥 Company Health Analyzer
-Fundamental analysis without the noise.
-- Key financial ratios (ROE, ROA, D/E, Liquidity)  
-- Revenue, earnings & market-cap growth trends  
-- Volatility-based risk modeling  
-- Analyst recommendations aggregation  
-- Unified **Company Health Score**
+- Automated financial ratio calculation (ROE, ROA, D/E, Liquidity)  
+- Revenue, profit & market capitalization growth tracking  
+- Volatility-based risk assessment  
+- Analyst recommendation aggregation  
+- Unified **Company Health Score**  
+
+---
+
+### 🤖 Automated Trading Engine
+- Modular algorithmic strategy architecture  
+- **Alpha Scalp** — High-frequency micro-profit logic  
+- **Momentum Swing** — Trend-following execution  
+- **Conservative Yield** — Capital preservation strategy  
+- Transparent execution logs & telemetry  
+
+---
+
+### 💱 Crypto & Forex Converter
+- Fiat ↔ Crypto conversion (USD, EUR, BTC, ETH, etc.)  
+- Live exchange rate fetching  
+- Low-latency pricing calculations  
+
+---
+
+### 📡 Market Data Aggregation
+- Multi-source financial data ingestion  
+- API rate-limit–aware design  
+- Cached responses for performance & reliability  
 
 ---
 
 ## 🎨 UI / UX Design Philosophy
 
-STAX follows a **developer-grade dark UI** optimized for focus.
+STAX follows a **developer-grade dark UI** optimized for clarity and focus.
 
 - Glassmorphism-based card system  
 - Responsive CSS Grid layout  
-- Smooth transitions & visual feedback  
+- Smooth hover states & transitions  
 - Color-coded sentiment indicators  
 
 _No unnecessary animations. No visual clutter._
