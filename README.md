@@ -69,19 +69,6 @@ Market Toolkit/
 ├── structure.txt       # API Configuration & Rate Limits
 └── README.md           # Documentation
 ```
-
-## 🔌 Data Providers & Configuration
-
-Stax aggregates data from multiple top-tier financial APIs to ensure accuracy and redundancy.
-
-| Provider | Daily Requests | Rate Limit | Usage |
-|----------|----------------|------------|-------|
-| **Alpha Vantage** | 25 | 5/min | Technical Indicators |
-| **EODHD** | 20 | ~ | Historical Data (30+ Years) |
-| **Finnhub** | Unlimited* | 60/sec | Real-time Price Feeds |
-| **FMP** | 250 | ~ | Fundamental Data (US) |
-| **Twelve Data** | 800 | 8/min | Global Market Reach |
-
 ---
 
 ## 👨‍💻 Developer Info
