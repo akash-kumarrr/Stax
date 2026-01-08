@@ -1,52 +1,95 @@
-# Stax - Market Toolkit
+<div align="center">
 
-Stax is an advanced financial toolkit designed for precision and speed. It provides traders and investors with real-time analytics, automated trading bots, and deep fundamental health checks for companies.
+  # 📈 Stax - Market Toolkit
 
-## Features
+  ![Version](https://img.shields.io/badge/version-v26.00-blue.svg?style=for-the-badge)
+  ![Status](https://img.shields.io/badge/status-active%20development-success.svg?style=for-the-badge)
+  ![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=for-the-badge)
 
-### 1. Personal Stock Dashboard
-- Real-time tracking of assets and market movements.
-- Visual trend indicators (Daily trends, percentage changes).
+</div>
 
-### 2. Crypto & Forex Converter
-- Instant conversion rates across global markets.
-- Supports major currencies (USD, EUR, GBP) and cryptocurrencies (BTC).
+<p align="center">
+  **Stax** is a high-precision financial toolkit engineered for speed and accuracy. It empowers traders and investors with real-time analytics, automated algorithmic trading bots, and deep fundamental health checks for global companies.
+</p>
 
-### 3. Automated Trade Bot
-- Algorithmic trading strategies running 24/7.
-- **Available Strategies**:
-  - Alpha Scalp
-  - Momentum Swing
-  - Conservative Yield
-- Real-time status monitoring and logs.
+---
 
-### 4. Company "Health Check"
-- Deep fundamental analysis and risk assessment.
-- Comprehensive reports covering:
-  - Financial Health & Ratios (ROE, ROA, Debt-to-Equity)
-  - Growth Metrics
-  - Analyst Outlooks
-  - Risk Indicators
+## ✨ Key Features
 
-## Tech Stack
+### 📊 1. Personal Stock Dashboard
+Stay on top of your portfolio with a sleek, dark-mode dashboard.
+- **Real-time Tracking**: Monitor assets and market movements instantly.
+- **Visual Indicators**: Daily trends, percentage changes, and volatility markers.
 
-- **Language**: Python
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Database**: Firebase
-- **Data Providers**:
-  - Alpha Vantage
-  - EODHD
-  - Finnhub
-  - Financial Modeling Prep (FMP)
-  - Twelve Data
+### 💱 2. Crypto & Forex Converter
+Seamless currency conversion across global markets.
+- **Instant Rates**: Live data for major currencies (USD, EUR, GBP) and Crypto (BTC, ETH).
+- **Cross-Market Support**: Convert between fiat and digital assets effortlessly.
 
-## Project Structure
+### 🤖 3. Automated Trade Bot
+Algorithmic trading strategies running 24/7 to maximize efficiency.
+- **Strategies**:
+  - ⚡ **Alpha Scalp**: High-frequency, small margin trades.
+  - 🌊 **Momentum Swing**: Catching mid-term market trends.
+  - 🛡️ **Conservative Yield**: Low-risk, steady growth focus.
+- **Live Monitoring**: Real-time logs and status updates.
 
-- `templates/`: Contains all HTML views (Home, Login, Signup, Dashboard, About).
-- `structure.txt`: Configuration details regarding API rate limits and requests.
+### 🏥 4. Company "Health Check"
+Deep-dive fundamental analysis to assess investment risks.
+- **Financial Ratios**: ROE, ROA, Debt-to-Equity, and more.
+- **Growth Metrics**: Revenue and profit trajectories.
+- **Risk Assessment**: Volatility and leverage risk indicators.
+- **Analyst Outlook**: Aggregated ratings and price targets.
 
-## Developer Info
+---
+
+## 🛠️ Tech Stack
+
+Built with a robust and modern technology stack designed for performance.
+
+| Component | Technology |
+|-----------|------------|
+| **Core** | !Python |
+| **Frontend** | !HTML5 !CSS3 !JavaScript |
+| **Database** | !Firebase |
+| **Data APIs** | Alpha Vantage, EODHD, Finnhub, FMP, Twelve Data |
+
+---
+
+## 📂 Project Structure
+
+```text
+Market Toolkit/
+├── templates/          # Frontend Views
+│   ├── home.html       # Landing Page
+│   ├── main.html       # Main Dashboard
+│   ├── login.html      # Authentication
+│   ├── signup.html     # Registration
+│   └── about.html      # Project Info
+├── structure.txt       # API Configuration & Rate Limits
+└── README.md           # Documentation
+```
+
+## 🔌 Data Providers & Configuration
+
+Stax aggregates data from multiple top-tier financial APIs to ensure accuracy and redundancy.
+
+| Provider | Daily Requests | Rate Limit | Usage |
+|----------|----------------|------------|-------|
+| **Alpha Vantage** | 25 | 5/min | Technical Indicators |
+| **EODHD** | 20 | ~ | Historical Data (30+ Years) |
+| **Finnhub** | Unlimited* | 60/sec | Real-time Price Feeds |
+| **FMP** | 250 | ~ | Fundamental Data (US) |
+| **Twelve Data** | 800 | 8/min | Global Market Reach |
+
+---
+
+## 👨‍💻 Developer Info
 
 - **Developer**: Akash Kumar
-- **Version**: v26.00
+- **Current Version**: v26.00
 - **Status**: Active Development
+
+---
+
+*© 2025 Stax. All Rights Reserved.*
