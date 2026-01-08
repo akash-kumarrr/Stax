@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stax - About</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --accent-color: #ffffff;
+            --accent-hover: #cccccc;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        /* Layout */
+        .section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 5%;
+        }
+
+        .split-container {
+            display: flex;
+            width: 1100px;
+            max-width: 95%;
+            height: 600px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .split-left {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+            text-align: left;
+        }
+
+        .split-right {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .section-label {
+            color: var(--accent-color);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Cards */
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .info-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dev-info p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dev-info span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .split-container { flex-direction: column; height: auto; }
+            .split-left, .split-right { padding: 30px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="brand">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>Stax</span>
+        </a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about" class="active">About</a>
+            <a href="/login">Login</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="split-container">
+            <div class="split-left">
+                <span class="section-label">About</span>
+                <h2 style="font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1;">About Stax</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">
+                    Advanced financial toolkit designed for precision and speed.
+                </p>
+                <div style="margin-top: 20px;">
+                    <p style="color: var(--text-secondary); margin-bottom: 5px;">Version <span style="color: var(--text-primary); margin-left: 10px;">v26.00</span></p>
+                    <p style="color: var(--text-secondary);">Developer <span style="color: var(--text-primary); margin-left: 10px;">Akash Kumar</span></p>
+                </div>
+            </div>
+            <div class="split-right">
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-code"></i> Tech Stack</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 15px;">Built with robust modern technologies.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                </div>
+                <div class="info-card dev-info">
+                    <h3><i class="fa-solid fa-circle-info"></i> Project Info</h3>
+                    <p>Started <span>7/01/2025</span></p>
+                    <p>Status <span>Active Development</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

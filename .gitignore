@@ -1,0 +1,6 @@
+.env
+README.md
+short-description.txt
+structure.txt
+database.json
+__pycache__/

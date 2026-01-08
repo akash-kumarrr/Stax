@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stax - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --accent-color: #ffffff;
+            --accent-hover: #cccccc;
+            --border-color: #333333;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-right: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            position: fixed;
+            height: 100%;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            margin-bottom: 50px;
+        }
+
+        .nav-links {
+            list-style: none;
+            flex: 1;
+        }
+
+        .nav-links li {
+            margin-bottom: 10px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .user-profile {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        header h2 {
+            font-size: 1.8rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 15px;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-header i {
+            color: var(--text-secondary);
+        }
+
+        /* Inputs & Forms */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--text-primary);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Feature Specifics */
+        .asset-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .asset-item:last-child { border-bottom: none; }
+
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--danger); }
+
+        .bot-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        .health-score {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .score-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 5px solid var(--border-color);
+            border-top-color: var(--text-primary);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .health-report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .health-section {
+            background-color: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .health-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .health-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 6px 0;
+        }
+        .health-item span:last-child {
+            color: var(--text-primary);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        /* Fix for Browser Autofill Background */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px var(--bg-dark) inset !important;
+            -webkit-text-fill-color: var(--text-primary) !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <a href="#" class="brand">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>Stax</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showView('dashboard-view', this)" class="active"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+            <li><a href="#" onclick="showView('portfolio-view', this)"><i class="fa-solid fa-wallet"></i> Portfolio</a></li>
+            <li><a href="#" onclick="showView('health-view', this)"><i class="fa-solid fa-heart-pulse"></i> Company Health</a></li>
+            <li><a href="#" onclick="showView('news-view', this)"><i class="fa-solid fa-newspaper"></i> News</a></li>
+            <li><a href="#" onclick="showView('settings-view', this)"><i class="fa-solid fa-gear"></i> Settings</a></li>
+            <li><a href="/"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+        <div class="user-profile">
+            <div class="avatar"><i class="fa-solid fa-user"></i></div>
+            <div>
+                <p style="font-size: 0.9rem; font-weight: 600;">AKASH KUMAR</p>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">Pro Plan</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <i class="fa-solid fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+                <h2>Dashboard</h2>
+            </div>
+            <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                Market Status: <span style="color: var(--success);">Open</span>
+            </div>
+        </header>
+
+        <div id="dashboard-view" class="main-view">
+            <div class="dashboard-grid">
+                <!-- 1. Personal Stock Dashboard -->
+                <div class="card" style="grid-row: span 2;">
+                    <div class="card-header">
+                        <h3>Stock Dashboard</h3>
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Total Balance</p>
+                        <h1 style="font-size: 2.5rem;" id="total_balance">$24,592.00</h1>
+                        <p class="trend-up" id="daily_trend"><i class="fa-solid fa-arrow-trend-up"></i> +2.4% Today</p>
+                    </div>
+                    <div class="asset-list" id="asset_list">
+                        <div class="asset-item">
+                            <div><strong>AAPL</strong> <span style="color: var(--text-secondary); font-size: 0.8rem;">Apple Inc.</span></div>
+                            <div style="text-align: right;">$173.50 <div class="trend-up" style="font-size: 0.8rem;">+1.2%</div></div>
+                        </div>
+                        <div class="asset-item">
+                            <div><strong>TSLA</strong> <span style="color: var(--text-secondary); font-size: 0.8rem;">Tesla</span></div>
+                            <div style="text-align: right;">$242.10 <div class="trend-down" style="font-size: 0.8rem;">-0.5%</div></div>
+                        </div>
+                        <div class="asset-item">
+                            <div><strong>NVDA</strong> <span style="color: var(--text-secondary); font-size: 0.8rem;">Nvidia</span></div>
+                            <div style="text-align: right;">$460.15 <div class="trend-up" style="font-size: 0.8rem;">+3.1%</div></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- 2. Crypto & Forex Converter -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Converter</h3>
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+                    <form action="/convert" method="POST">
+                        <div class="input-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amount" name="amount" placeholder="1.00" value="1" step="any" required>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <div class="input-group" style="flex: 1;">
+                                <label for="from_currency">From</label>
+                                <select id="from_currency" name="from_currency"><option value="BTC">BTC</option><option value="USD">USD</option><option value="EUR">EUR</option></select>
+                            </div>
+                            <div class="input-group" style="flex: 1;">
+                                <label for="to_currency">To</label>
+                                <select id="to_currency" name="to_currency"><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option></select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Convert</button>
+                    </form>
+                </div>
+    
+                <!-- 3. Automated Trade Bot -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Trade Bot</h3>
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="bot-status" id="bot_status_container">
+                        <div class="status-dot" id="bot_status_dot"></div>
+                        <div>
+                            <strong id="bot_active_msg">Active: Alpha Strategy</strong>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary);" id="bot_uptime">Running for 12h 30m</p>
+                        </div>
+                    </div>
+                    <form action="/trade_bot" method="POST">
+                        <div class="input-group">
+                            <label for="strategy">Strategy</label>
+                            <select id="strategy" name="strategy">
+                                <option value="Alpha Scalp">Alpha Scalp</option>
+                                <option value="Momentum Swing">Momentum Swing</option>
+                                <option value="Conservative Yield">Conservative Yield</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button type="submit" name="action" value="logs" class="btn" style="background-color: var(--border-color); color: white;">Logs</button>
+                            <button type="submit" name="action" value="stop" class="btn" style="background-color: var(--danger); color: white;">Stop</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="health-view" class="main-view" style="display: none;">
+            <!-- 4. Company Health Check -->
+            <div class="card" style="margin-bottom: 25px;">
+                <div class="card-header">
+                    <h3>Health Check</h3>
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <form action="/health_check" method="POST">
+                    <div class="input-group">
+                        <label for="ticker">Company Ticker</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="ticker" name="ticker" placeholder="e.g. MSFT" style="text-transform: uppercase;" required>
+                            <button type="submit" class="btn" style="width: auto;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <div class="health-score">
+                    <div class="score-circle" id="score_value">85</div>
+                    <p style="font-size: 0.9rem;" id="buy_signal">Strong Buy</p>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary);">
+                    <span id="fundamentals_grade">Fundamentals: A</span>
+                    <span id="risk_level">Risk: Low</span>
+                </div>
+            </div>
+
+            <!-- 5. Full Company Health Report -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Company Health Report</h3>
+                    <i class="fa-solid fa-microscope"></i>
+                </div>
+                <div class="health-report-grid">
+                    <!-- All the health sections from the original card go here -->
+                    <!-- 1. Company Overview -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-building"></i> Company Overview</h4>
+                        <div class="health-item"><span>Company Name</span><span id="ch_company_name">--</span></div>
+                        <div class="health-item"><span>Ticker</span><span id="ch_ticker_symbol">--</span></div>
+                        <div class="health-item"><span>Industry</span><span id="ch_industry">--</span></div>
+                        <div class="health-item"><span>Exchange</span><span id="ch_exchange">--</span></div>
+                        <div class="health-item"><span>Country</span><span id="ch_country">--</span></div>
+                        <div class="health-item"><span>Market Cap</span><span id="ch_market_cap">--</span></div>
+                        <div class="health-item"><span>IPO Date</span><span id="ch_ipo_date">--</span></div>
+                    </div>
+
+                    <!-- 2. Financial Health -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-file-invoice-dollar"></i> Financial Health</h4>
+                        <div class="health-item"><span>Total Revenue</span><span id="ch_total_revenue">--</span></div>
+                        <div class="health-item"><span>Net Income</span><span id="ch_net_income">--</span></div>
+                        <div class="health-item"><span>Profit Margins</span><span id="ch_profit_margins">--</span></div>
+                        <div class="health-item"><span>Operating Cash Flow</span><span id="ch_operating_cash_flow">--</span></div>
+                        <div class="health-item"><span>Assets vs Liabilities</span><span id="ch_assets_vs_liabilities">--</span></div>
+                        <div class="health-item"><span>Total Debt</span><span id="ch_total_debt">--</span></div>
+                        <div class="health-item"><span>Profitability</span><span id="ch_profitability_status">--</span></div>
+                    </div>
+
+                    <!-- 3. Financial Ratios -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-calculator"></i> Financial Ratios</h4>
+                        <div class="health-item"><span>Return on Equity (ROE)</span><span id="ch_roe">--</span></div>
+                        <div class="health-item"><span>Return on Assets (ROA)</span><span id="ch_roa">--</span></div>
+                        <div class="health-item"><span>Current Ratio</span><span id="ch_current_ratio">--</span></div>
+                        <div class="health-item"><span>Debt-to-Equity</span><span id="ch_debt_to_equity">--</span></div>
+                        <div class="health-item"><span>Profit Margin</span><span id="ch_profit_margin_ratio">--</span></div>
+                        <div class="health-item"><span>Earnings Growth</span><span id="ch_earnings_growth_ratio">--</span></div>
+                    </div>
+
+                    <!-- 4. Growth Health -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-arrow-trend-up"></i> Growth Health</h4>
+                        <div class="health-item"><span>Revenue Growth</span><span id="ch_revenue_growth">--</span></div>
+                        <div class="health-item"><span>Profit Growth</span><span id="ch_profit_growth">--</span></div>
+                        <div class="health-item"><span>Earnings Growth</span><span id="ch_earnings_growth">--</span></div>
+                        <div class="health-item"><span>Market Cap Growth</span><span id="ch_market_cap_growth">--</span></div>
+                    </div>
+
+                    <!-- 5. Stock Health -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-chart-line"></i> Stock Health</h4>
+                        <div class="health-item"><span>Current Price</span><span id="ch_stock_price">--</span></div>
+                        <div class="health-item"><span>52-Week High/Low</span><span id="ch_52_week_high_low">--</span></div>
+                        <div class="health-item"><span>Trading Volume</span><span id="ch_trading_volume">--</span></div>
+                        <div class="health-item"><span>Volatility</span><span id="ch_price_volatility">--</span></div>
+                        <div class="health-item"><span>Historical Trend</span><span id="ch_price_trend_chart">--</span></div>
+                    </div>
+
+                    <!-- 6. Analyst Outlook -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-user-tie"></i> Analyst Outlook</h4>
+                        <div class="health-item"><span>Ratings</span><span id="ch_analyst_ratings">--</span></div>
+                        <div class="health-item"><span>Recommendation Trend</span><span id="ch_analyst_trends">--</span></div>
+                        <div class="health-item"><span>Target Price Range</span><span id="ch_target_price">--</span></div>
+                    </div>
+
+                    <!-- 7. Risk Indicators -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Risk Indicators</h4>
+                        <div class="health-item"><span>Leverage Risk</span><span id="ch_leverage_risk">--</span></div>
+                        <div class="health-item"><span>Earnings Stability</span><span id="ch_earnings_stability_risk">--</span></div>
+                        <div class="health-item"><span>Cash Flow Stability</span><span id="ch_cash_flow_stability">--</span></div>
+                        <div class="health-item"><span>Market Volatility</span><span id="ch_market_volatility_risk">--</span></div>
+                    </div>
+
+                    <!-- 8. News & Events -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-newspaper"></i> News & Events</h4>
+                        <div class="health-item"><span>Recent News</span><span id="ch_news_list">--</span></div>
+                        <div class="health-item"><span>Earnings Dates</span><span id="ch_earnings_announcements">--</span></div>
+                        <div class="health-item"><span>Market Events</span><span id="ch_market_events">--</span></div>
+                        <div class="health-item"><span>Impact Tags</span><span id="ch_news_impact_tags">--</span></div>
+                    </div>
+                    
+                    <!-- 9. Overall Score -->
+                    <div class="health-section">
+                        <h4><i class="fa-solid fa-tachometer-alt"></i> Overall Score</h4>
+                        <div class="health-item"><span>Financial Score</span><span id="ch_financial_score">--</span></div>
+                        <div class="health-item"><span>Growth Score</span><span id="ch_growth_score">--</span></div>
+                        <div class="health-item"><span>Stock Health Score</span><span id="ch_stock_health_score">--</span></div>
+                        <div class="health-item"><span>Risk Score</span><span id="ch_risk_score">--</span></div>
+                        <div class="health-item"><strong><span>Final Score</span></strong><strong id="ch_final_score">--</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Placeholder views for other nav links -->
+        <div id="portfolio-view" class="main-view" style="display: none; padding: 20px;"><h2>Portfolio coming soon...</h2></div>
+        <div id="news-view" class="main-view" style="display: none; padding: 20px;"><h2>News coming soon...</h2></div>
+        <div id="settings-view" class="main-view" style="display: none; padding: 20px;"><h2>Settings coming soon...</h2></div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        function showView(viewId, element) {
+            // Prevent default link behavior
+            event.preventDefault();
+
+            // Hide all main views
+            document.querySelectorAll('.main-view').forEach(view => view.style.display = 'none');
+
+            // Show the selected view
+            const activeView = document.getElementById(viewId);
+            if (activeView) {
+                activeView.style.display = 'block';
+            }
+
+            // Update active class on sidebar
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>

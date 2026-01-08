@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stax - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --accent-color: #10b981; /* Financial Green */
+            --accent-hover: #059669;
+            --border-color: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 1000px;
+            max-width: 95%;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        /* Left Side - Features */
+        .info-side {
+            flex: 1;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.02) 0%, rgba(0, 0, 0, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .brand {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features {
+            list-style: none;
+        }
+
+        .features li {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .features i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-top: 4px;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .features h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .features p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Right Side - Login */
+        .login-side {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mobile-brand {
+            display: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-header {
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* Fix for Browser Autofill Background */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px var(--bg-dark) inset !important;
+            -webkit-text-fill-color: var(--text-primary) !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .links {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                min-height: auto;
+            }
+            .info-side {
+                display: none;
+            }
+            .login-side {
+                padding: 30px;
+            }
+            .mobile-brand {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info-side">
+            <div class="brand">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>Stax</span>
+            </div>
+            <ul class="features">
+                <li>
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <div>
+                        <h3>Personal Stock Dashboard</h3>
+                        <p>Real-time tracking of your assets and market movements.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <div>
+                        <h3>Crypto & Forex Converter</h3>
+                        <p>Instant conversion rates across global markets.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-robot"></i>
+                    <div>
+                        <h3>Automated Trade Bot</h3>
+                        <p>Algorithmic trading strategies running 24/7.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <div>
+                        <h3>Company "Health Check"</h3>
+                        <p>Deep fundamental analysis and risk assessment tools.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="login-side">
+            <div class="mobile-brand">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>Stax</span>
+            </div>
+            <div class="login-header">
+                <h2>Create Account</h2>
+                <p>Join Stax for advanced market analysis.</p>
+            </div>
+            <form action="/signup" method="POST">
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="name" placeholder="John Doe" autocomplete="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="trader@example.com" autocomplete="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="trader123" autocomplete="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password" required style="padding-right: 45px;">
+                        <i class="fa-solid fa-eye password-toggle" onclick="togglePassword('password', this)"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Sign Up</button>
+                <div class="links">
+                    <span>Already have an account?</span><a href="/login">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function togglePassword(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+    </script>
+</body>
+</html>
